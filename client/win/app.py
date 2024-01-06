@@ -1,10 +1,25 @@
 import requests
 import time
 import json
+import os
+import shutil
 import win32serviceutil
 import win32service
 import win32event
 import servicemanager
+
+defaultConfigDir = "~/Documents"
+defaultConfigFile = "config.json"
+
+# 创建 config 文件夹
+if not os.path.exists(defaultConfigDir):
+    os.mkdir(defaultConfigDir)
+
+# 拷贝配置文件，优先选择拷贝当前目录下的 "private.config.json"，否则拷贝 "config.json"
+if os.path.exists("private.config.json"):
+    shutil.copyfile("private.config.json", os.path.join(defaultConfigDir, defaultConfigFile))
+else:
+    shutil.copyfile("config.json", os.path.join(defaultConfigDir, defaultConfigFile))
 
 class AppServerSvc (win32serviceutil.ServiceFramework):
     _svc_name_ = 'DDNS-Yourself'
@@ -14,13 +29,8 @@ class AppServerSvc (win32serviceutil.ServiceFramework):
     def __init__(self,args):
         win32serviceutil.ServiceFramework.__init__(self,args)
         self.hWaitStop = win32event.CreateEvent(None,0,0,None)
-        try:
-            with open('private.config.json') as config_file:
+        with open(os.path.join(defaultConfigDir, defaultConfigFile)) as config_file:
                 self.config = json.load(config_file)
-        except FileNotFoundError:
-            with open('config.json') as config_file:
-                self.config = json.load(config_file)
-        
 
     def SvcDoRun(self):
         servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,
