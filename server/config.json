@@ -1,5 +1,4 @@
 {
-    "clientCacheTime": 10,
-    "recordCacheTime": 30
-  }
-  
+  "clientCacheTime": 10,
+  "recordCacheTime": 30
+}

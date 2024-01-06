@@ -5,8 +5,12 @@ import os
 import platform
 
 # 读取配置
-with open('config.json') as config_file:
-    config = json.load(config_file)
+try:
+    with open('private.config.json') as config_file:
+        config = json.load(config_file)
+except FileNotFoundError:
+    with open('config.json') as config_file:
+        config = json.load(config_file)
 
 def sync_hosts(force=False):
     payload = {'clientDomain': config['domain']}

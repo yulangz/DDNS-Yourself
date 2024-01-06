@@ -6,10 +6,15 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 
 # 读取配置
-with open('config.json') as config_file:
-    config = json.load(config_file)
-    client_cache_time = config['clientCacheTime']
-    record_cache_time = config['recordCacheTime']
+try:
+    with open('private.config.json') as config_file:
+        config = json.load(config_file)
+except FileNotFoundError:
+    with open('config.json') as config_file:
+        config = json.load(config_file)
+
+client_cache_time = config['clientCacheTime']
+record_cache_time = config['recordCacheTime']
 
 # 数据结构和锁
 client_records = {}
