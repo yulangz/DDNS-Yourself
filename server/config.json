@@ -1,4 +1,5 @@
 {
   "clientCacheTime": 10,
-  "recordCacheTime": 30
+  "recordCacheTime": 30,
+  "port": 25899
 }

@@ -53,4 +53,4 @@ def sync():
         return jsonify({domain: record['ipv6'] for domain, record in client_records.items()})
 
 if __name__ == '__main__':
-    app.run(host='::', port=8000)
+    app.run(host='::', port=config["port"])
