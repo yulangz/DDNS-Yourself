@@ -1,0 +1,10 @@
+{
+    "domain": "example.com",
+    "syncTime": 60,
+    "serverAddr": "server_address",
+    "serverPort": 8000,
+    "domainSuffix": ".example.com",
+    "gateway": "aaaa::bbbb",
+    "networkInterface": ["eth0", "wlan0"],
+    "hostPath": "C:/Windows/System32/drivers/etc/hosts"
+}
