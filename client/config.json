@@ -6,5 +6,6 @@
     "domainSuffix": ".example.com",
     "gateway": "aaaa::bbbb",
     "networkInterface": ["eth0", "wlan0"],
-    "hostPath": "C:/Windows/System32/drivers/etc/hosts"
+    "hostPath": "C:/Windows/System32/drivers/etc/hosts",
+    "https": true
 }
